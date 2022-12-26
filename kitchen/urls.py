@@ -1,7 +1,10 @@
-from importlib.resources import path
+from django.urls import path
 
-app_name = "kitchen"
+from django.contrib.auth import views
 
 urlpatterns = [
-    # path("", index, name="index"),
+    path("login/", views.LoginView.as_view(), name="login"),
+    path("logout/", views.LogoutView.as_view(), name="logout"),
 ]
+
+app_name = "kitchen"
