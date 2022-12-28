@@ -2,6 +2,10 @@
 
 {% block content %}
 
+  <h1 class="text-gray-800 font-bold text-center text-xl my-5">
+    Cook List
+  </h1>
+
   <div class="mt-5 flex justify-between">
     <form action="" method="get" autocomplete="off" class="w-[300px]">
       <label for="id_name" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
@@ -59,18 +63,21 @@
       {% for cook in cook_list %}
         <tr class="bg-white border-b">
           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-            {{ cook.username }}
+            <a href="{% url 'kitchen:cook-detail' pk=cook.id %}"
+               class="font-medium text-blue-600 hover:underline">
+              {{ cook.username }}
+            </a>
           </th>
           <td class="py-4 px-6">
             {% if not cook.first_name %}
-                NONE
+              NONE
             {% else %}
               {{ cook.first_name }}
             {% endif %}
           </td>
           <td class="py-4 px-6">
             {% if not cook.first_name %}
-                NONE
+              NONE
             {% else %}
               {{ cook.last_name }}
             {% endif %}

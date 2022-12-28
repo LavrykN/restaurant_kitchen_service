@@ -1,5 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>qwe</h1>
+
+  <div class="w-1/2 mx-auto text-center m-5 flex-col justify-between ">
+    <h1 class="my-5">Restaurant Service Home</h1>
+    <p>Welcome to Best Restaurant Ever!</p>
+    <h2>Dynamic content</h2>
+    <p class="my-3">The restaurant service has the following record counts:</p>
+    <ul class="my-10">
+      <li><strong>Cook:</strong> {{ num_cook }}</li>
+      <li><strong>Dish:</strong> {{ num_dish }}</li>
+      <li><strong>Dish Type:</strong> {{ num_dish_type }}</li>
+    </ul>
+
+    <p>You have visited this page
+      {{ num_visits }} time{{ num_visits|pluralize }}.
+    </p>
+  </div>
+
 {% endblock %}
