@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+
+{% block content %}
+
+  <h1 class="m-auto text-center p-5 text-xl text-gray-700">
+    {{ object|yesno:"Update,Create" }} Dish Type
+  </h1>
+  <div class="max-w-3xl m-auto">
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {{ form|crispy }}
+
+      <input type="submit" value="Submit"
+                 class="w-full text-white bg-blue-600 rounded-lg text-sm px-5 py-2.5 text-center"/>
+    </form>
+  </div>
+
+{% endblock %}

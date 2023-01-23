@@ -1,0 +1,29 @@
+{% load tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  {% block title %}<title>Restaurant Service</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% tailwind_css %}
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@latest/dist/flowbite.min.css"/>
+</head>
+
+<body class="bg-gray-50">
+
+  {% include "includes/navba.html" %}
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {% block content %}
+
+    {% endblock content %}
+  </div>
+
+
+  <script src="https://unpkg.com/flowbite@latest/dist/flowbite.js"></script>
+</body>
+
+</html>

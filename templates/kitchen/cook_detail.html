@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+
+{% block content %}
+
+  <h1 class="text-gray-800 font-bold text-center text-xl my-5">
+    Detail Cook Page
+  </h1>
+
+  <div class="flex flex-row justify-between my-10 text-gray-600">
+    <h1>Username:
+      <span class="text-gray-800 uppercase font-bold">
+        {{ cook.username }}
+      </span>
+    </h1>
+    <h2>Name:
+      <span class="text-gray-800 uppercase font-bold">
+        {{ cook.first_name }} {{ cook.last_name }}
+      </span>
+    </h2>
+    <h2>Email:
+      <span class="text-gray-800 uppercase font-bold">
+        {{ cook.email }}
+      </span>
+    </h2>
+    <h2>Years of experience:
+      <span class="text-gray-800 uppercase font-bold">
+        {{ cook.years_of_experience }}
+      </span>
+    </h2>
+  </div>
+
+
+
+  <h3 class="text-center text-xl text-gray-700">Can cook</h3>
+  <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-5">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <tr>
+        <th scope="col" class="py-3 px-6">
+          Product name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Product description
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Price
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Dish Type
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Edit
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Delete
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for dish in cook.dishes.all %}
+        <tr class="bg-white border-b">
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+            {{ dish.name }}
+          </th>
+          <td class="py-4 px-6">
+            {{ dish.description }}
+          </td>
+          <td class="py-4 px-6">
+            ${{ dish.price }}
+          </td>
+          <td class="py-4 px-6">
+            {{ dish.dish_type }}
+          </td>
+          <td class="py-4 px-6">
+            <a href="{% url 'kitchen:dish-update' pk=dish.id %}"
+               class="font-medium text-blue-600 hover:underline">Edit</a>
+          </td>
+          <td class="py-4 px-6">
+            <a href="{% url 'kitchen:dish-delete' pk=dish.id %}"
+               class="font-medium text-red-600 hover:underline">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+
+{% endblock %}

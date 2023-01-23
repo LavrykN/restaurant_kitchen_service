@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1 class="text-gray-800 font-bold text-center text-xl my-5">
+    Cook List
+  </h1>
+
+  <div class="mt-5 flex justify-between">
+    <form action="" method="get" autocomplete="off" class="w-[300px]">
+      <label for="id_name" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor"
+               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        <input type="text" name="username" autocomplete="off" maxlength="255" id="id_name"
+               value="{{ search_form.name.value }}"
+               class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
+               placeholder="Search by username">
+        <input type="submit" value="Search"
+               class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 "/>
+
+      </div>
+    </form>
+    <div class="block my-auto">
+      <a href="{% url 'kitchen:cook-create' %}"
+         class="max-w-full text-white bg-blue-600 rounded-lg text-sm px-5 py-2.5 text-center">Create new Cook</a>
+    </div>
+  </div>
+
+  <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-5">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <tr>
+        <th scope="col" class="py-3 px-6">
+          Username
+        </th>
+        <th scope="col" class="py-3 px-6">
+          First name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Last name
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Email
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Years of experience
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Edit
+        </th>
+        <th scope="col" class="py-3 px-6">
+          Delete
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for cook in cook_list %}
+        <tr class="bg-white border-b">
+          <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+            <a href="{% url 'kitchen:cook-detail' pk=cook.id %}"
+               class="font-medium text-blue-600 hover:underline">
+              {{ cook.username }}
+            </a>
+          </th>
+          <td class="py-4 px-6">
+            {% if not cook.first_name %}
+              NONE
+            {% else %}
+              {{ cook.first_name }}
+            {% endif %}
+          </td>
+          <td class="py-4 px-6">
+            {% if not cook.first_name %}
+              NONE
+            {% else %}
+              {{ cook.last_name }}
+            {% endif %}
+          </td>
+          <td class="py-4 px-6">
+            {{ cook.email }}
+          </td>
+          <td class="py-4 px-6">
+            {{ cook.years_of_experience }}
+          </td>
+          <td class="py-4 px-6">
+            <a href="{% url 'kitchen:cook-update' pk=cook.id %}"
+               class="font-medium text-blue-600 hover:underline">Edit</a>
+          </td>
+          <td class="py-4 px-6">
+            <a href="{% url 'kitchen:cook-delete' pk=cook.id %}"
+               class="font-medium text-red-600 hover:underline">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}
